@@ -3,6 +3,7 @@ var express = require('express');
 var userscontroller = require("./userscontroller")
 
 var app = express();
+let port = process.env.PORT || 3000;
 
 app.use(express.json())    // <==== parse request body as JSON
 
@@ -66,6 +67,6 @@ app.get('/', function(req, res) {
 });
 
 
-app.listen(3000, function() {
-  console.log('Example app listening on port 3000!');
+app.listen(port, function() {
+  console.log(`Example app listening on port http://localhost:${port}!`);
 });
