@@ -3,7 +3,7 @@ const fs = require('fs');
 
 
 module.exports.dbread = () =>{
-    let rawjson = fs.readFileSync('db.json');
+    let rawjson = fs.readFileSync('data_users.json');
     let users = JSON.parse(rawjson);
     
     return users;
@@ -11,7 +11,7 @@ module.exports.dbread = () =>{
 
 module.exports.dbwrite = (users) =>{
     let data = JSON.stringify(users);
-    fs.writeFileSync('db.json', data);
+    fs.writeFileSync('data_users.json', data);
 };
 
 

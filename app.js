@@ -1,20 +1,20 @@
 'use strict';
 var express = require('express');
-//var cors = require('cors')
-
-
-var userscontroller = require("./userscontroller")
+var cors = require('cors')
+var userscontroller = require("./controller_users")
+var countriescontroller = require("./controller_countries")
 
 var app = express();
 let port = process.env.PORT || 3000;
 
 app.use(express.json())    // <==== parse request body as JSON
-//app.use(cors())
-/*
-res.header("Access-Control-Allow-Origin", "*");
-res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
-*/
+app.use(cors())
+
+app.get('/countries', function(req, res) {
+  res = addheaders(res);
+  res.send(countriescontroller.getcountries());
+});
+
 app.get('/users', function(req, res) {
   res = addheaders(res);
   res.send(userscontroller.getUsers());
@@ -40,20 +40,24 @@ app.delete('/users/:id', function(req, res) {
 });
 
 
-app.post('/users', function(req, res) {
+app.post('/users', cors(), function(req, res) {
   let newuser = req.body;
+  console.log("1");
   res = addheaders(res);
   if(!newuser){
+    console.log("2");
     res.status(404)
     res.send("not provided");}
   else{
     try{
+      console.log("3");
       userscontroller.getUserId(newuser.name, newuser.surname);
       res.status(400)
       res.send("already exists");
     }
     catch{
       try{
+        console.log("4");
         newuser.name;
         newuser.surname;
         newuser.age;
@@ -61,6 +65,7 @@ app.post('/users', function(req, res) {
         res.sendStatus(200);
       }
       catch{
+        console.log("5");
         res.status(400)
         res.send("not enough info");
       }
@@ -81,8 +86,9 @@ app.listen(port, function() {
 });
 
 function addheaders(obj){
-  obj.header("Access-Control-Allow-Origin", "*");
-  obj.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-  obj.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
+  obj.setHeader("Access-Control-Allow-Origin", "*");
+  obj.setHeader("Access-Control-Allow-Methods", "*");
+  obj.setHeader("Access-Control-Allow-Headers", "*");
+  //obj.header("Access-Control-Allow-Origin", "Origin, X-Requested-With, Content-Type, Accept");
   return obj;
 }
