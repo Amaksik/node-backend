@@ -1,12 +1,19 @@
 'use strict';
 var express = require('express');
+var cors = require('cors')
+
+
 var userscontroller = require("./userscontroller")
 
 var app = express();
 let port = process.env.PORT || 3000;
 
 app.use(express.json())    // <==== parse request body as JSON
+app.use(cors())
 
+res.header("Access-Control-Allow-Origin", "*");
+res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
 
 app.get('/users', function(req, res) {
   res.send(userscontroller.getUsers());
