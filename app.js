@@ -1,6 +1,6 @@
 'use strict';
 var express = require('express');
-var cors = require('cors')
+//var cors = require('cors')
 
 
 var userscontroller = require("./userscontroller")
@@ -9,23 +9,24 @@ var app = express();
 let port = process.env.PORT || 3000;
 
 app.use(express.json())    // <==== parse request body as JSON
-app.use(cors())
-
+//app.use(cors())
+/*
 res.header("Access-Control-Allow-Origin", "*");
 res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
 res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
-
+*/
 app.get('/users', function(req, res) {
+  res = addheaders(res);
   res.send(userscontroller.getUsers());
 });
 
 app.get('/users/:id', function(req, res) {
-  
+  res = addheaders(res);
   res.send(userscontroller.getUserById(req.params.id));
 
 });
 app.put('/users/:id', function(req, res) {
-
+  res = addheaders(res);
   let id = userscontroller.getUserById(req.params.id)
   userscontroller.removeUser(id);
   userscontroller.addUser(req.body);
@@ -33,7 +34,7 @@ app.put('/users/:id', function(req, res) {
 });
 
 app.delete('/users/:id', function(req, res) {
-
+  res = addheaders(res);
   userscontroller.removeUser(req.params.id);
   res.sendStatus(200);
 });
@@ -41,7 +42,7 @@ app.delete('/users/:id', function(req, res) {
 
 app.post('/users', function(req, res) {
   let newuser = req.body;
-
+  res = addheaders(res);
   if(!newuser){
     res.status(404)
     res.send("not provided");}
@@ -70,6 +71,7 @@ app.post('/users', function(req, res) {
 });
 
 app.get('/', function(req, res) {
+  res = addheaders(res);
   res.send("Welcome to Bac-End magic");
 });
 
@@ -77,3 +79,10 @@ app.get('/', function(req, res) {
 app.listen(port, function() {
   console.log(`Example app listening on port http://localhost:${port}!`);
 });
+
+function addheaders(obj){
+  obj.header("Access-Control-Allow-Origin", "*");
+  obj.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  obj.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
+  return obj;
+}
