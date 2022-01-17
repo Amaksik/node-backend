@@ -1,1 +1,3 @@
-[{"id":1,"name":"Sara","surname":"Williams","age":23,"gender":"Female","department":"History","car":"Honda"},{"id":2,"name":"John","surname":"Johanson","age":25,"gender":"Male","department":"Science","car":"Jeep"}]
+[
+    {"id":1,"name":"Sara","surname":"Williams","email":"a@a","gender":"Female","password":"asd123","car":"Honda"},
+    {"id":2,"name":"John","surname":"Johanson","email":"b@b","gender":"Male","password":"1111","car":"Jeep"}]

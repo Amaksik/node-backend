@@ -16,6 +16,10 @@ module.exports.getUserId= (username, usersurname) => {
     var user = users.find(item => item.name === username && item.surname === usersurname);
     return user.id;
 }
+module.exports.autorize= (useremail, userpass) => {
+    var user = users.find(item => item.email === useremail && item.password === userpass);
+    return user.id;
+}
 
 module.exports.addUser= (user)=> {
     

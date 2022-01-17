@@ -20,6 +20,34 @@ app.get('/users', function(req, res) {
   res.send(userscontroller.getUsers());
 });
 
+app.post('/users/autorize', cors(), function(req, res) {
+  let credentials = req.body;
+  
+  if(!credentials){
+    res.status(404)
+    res.send("not provided");}
+  else{
+    try{
+      let id =  userscontroller.autorize(credentials.email, credentials.password);
+      res.status(200)
+      res.send(JSON.stringify(id));
+    }
+    catch{
+        res.status(404)
+        res.send("user not found");
+    }
+    
+  }
+});
+
+
+
+
+
+
+
+
+
 app.get('/users/:id', function(req, res) {
   res = addheaders(res);
   res.send(userscontroller.getUserById(req.params.id));
