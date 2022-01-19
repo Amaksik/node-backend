@@ -84,7 +84,8 @@ app.post('/users', cors(), function(req, res) {
         newuser.age;
         userscontroller.addUser(newuser);
         res.status(200)
-      res.send(JSON.stringify(userscontroller.getUsers.length));
+        var userid = userscontroller.getUsers().length
+      res.send(JSON.stringify(userid));
       }
       catch{
         console.log("5");

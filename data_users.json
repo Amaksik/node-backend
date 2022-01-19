@@ -1,3 +1,2 @@
-[
-    {"id":1,"name":"Sara","surname":"Williams","email":"a@a","gender":"Female","password":"asd123","car":"Honda"},
+[{"id":1,"name":"Sara","surname":"Williams","email":"a@a","gender":"Female","password":"asd123","car":"Honda"},
     {"id":2,"name":"John","surname":"Johanson","email":"b@b","gender":"Male","password":"1111","car":"Jeep"}]
