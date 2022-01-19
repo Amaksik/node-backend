@@ -41,13 +41,6 @@ app.post('/users/autorize', cors(), function(req, res) {
 });
 
 
-
-
-
-
-
-
-
 app.get('/users/:id', function(req, res) {
   res = addheaders(res);
   res.send(userscontroller.getUserById(req.params.id));
@@ -90,7 +83,8 @@ app.post('/users', cors(), function(req, res) {
         newuser.surname;
         newuser.age;
         userscontroller.addUser(newuser);
-        res.sendStatus(200);
+        res.status(200)
+      res.send(JSON.stringify(userscontroller.getUsers.length));
       }
       catch{
         console.log("5");
