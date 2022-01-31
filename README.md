@@ -23,8 +23,9 @@ It is designed for building web applications and APIs.*
 ## General info
 This project is simple REST api written on js with express.  
 Frontend is an angularJS webpage hosted on netlify.  
-to preview visit [api/users](https://angularjs-api.herokuapp.com/users)  
-or visit next path [api/users/1](https://angularjs-api.herokuapp.com/users/1)
+
+SWAGGER! -> [added recently](https://angularjs-api.herokuapp.com/api-docs/) 
+
 	
 ## Technologies
 Project is created with:
@@ -38,6 +39,10 @@ To run this project, clone it locally using git bash:
 $ git clone ...
 $ npm install
 $ npm install express
+$ npm install axios
+$ npm install cors
+$ npm install express
+$ npm install swagger-ui-express
 $ npm start
 ```
 
