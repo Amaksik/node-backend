@@ -1,0 +1,145 @@
+{
+
+    "openapi": "3.0.3",
+    "info": {
+      "version": "1.0.0",
+      "title": "Node Backend CRUD",
+      "description": "Node+Express Project Application API to manage users and countries\n",
+      "contact": {
+        "name": "Antony Maksymenko",
+        "email": "a.maksik2013@gmail.com",
+        "url": "https://mineresume.netlify.app/"
+      },
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Users",
+        "description": "API for users in a system"
+      },
+      {
+        "name": "Countries",
+        "description": "API for valid countries in the system"
+      }
+    ],
+    "paths": {
+
+        "/users": {
+
+          "get": {
+            "tags": ["Users"],
+            "summary": "Get all users in system",
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/Users"
+                }
+              }
+            }
+          },
+          "get": {
+            "tags": ["Users"],
+            "summary": "Get all users in system",
+            "parameters": [
+              {
+                "name": "id", 
+                "in": "path",
+                "schema": {
+                  "$ref": "#/definitions/Users/id"
+                },
+                "required": true,
+                "description": "A single todo id"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Todo is obtained",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/definitions/Users"
+                    }
+                  }
+                }
+              },
+              "404": {
+                "description": "User not found",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/definitions/Users"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "post": {
+            "tags": ["Users"],
+            "summary": "Add new user",
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/Users"
+                }
+              }
+            }
+          }
+        }
+      },
+
+      "definitions": {
+        "User": {
+          "required": ["name", "_id", "companies"],
+          "properties": {
+            "_id": {
+              "type": "integer",
+              "uniqueItems": true
+            },
+            "isPublic": {
+              "type": "boolean"
+            },
+            "name": {
+              "type": "string"
+            },
+            "books": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            "companies": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "Users": {
+          "type": "array",
+          "$ref": "#/definitions/User"
+        }
+      },
+
+
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"]
+  }

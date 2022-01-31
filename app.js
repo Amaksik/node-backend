@@ -1,4 +1,6 @@
 'use strict';
+const swaggerUi = require('swagger-ui-express');
+const docs = require('./docs');
 
 var express = require('express');
 var cors = require('cors')
@@ -8,7 +10,10 @@ var countriescontroller = require("./controller_countries")
 var app = express();
 let port = process.env.PORT || 3000;
 
-
+app.use(
+  '/api-docs',
+  swaggerUi.serve,
+  swaggerUi.setup(docs));
 
 app.use(express.json())    // <==== parse request body as JSON
 
