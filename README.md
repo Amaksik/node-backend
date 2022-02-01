@@ -38,11 +38,7 @@ To run this project, clone it locally using git bash:
 ```
 $ git clone ...
 $ npm install
-$ npm install express
-$ npm install axios
-$ npm install cors
-$ npm install express
-$ npm install swagger-ui-express
+$ npm install axios cors express swagger-ui-express
 $ npm start
 ```
 
