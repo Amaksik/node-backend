@@ -50,3 +50,5 @@ I've planned to learn node with this materials:
 - [x] [Documentation | Node.js](https://nodejs.org/en/docs/)
 - [x] [Deploy Node.js on Heroku](https://www.youtube.com/watch?v=r2S89Hm1Uq0&t=456s )
 
+- [x] [Adding swaggerUI to project](https://www.section.io/engineering-education/documenting-node-js-rest-api-using-swagger/)
+
